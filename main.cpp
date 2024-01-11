@@ -29,6 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	int gGameRunning = 1;
 
 	// Initialization of your own variables go here
+	s8 pFont = AEGfxCreateFont("Assets/liberation-mono.ttf", 72);
 
 	// Using custom window procedure
 	AESysInit(hInstance, nCmdShow, 1600, 900, 1, 60, true, NULL);
@@ -41,6 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 	AEGfxVertexList* pMesh = initMesh();
+	AEGfxTexture* pTex = AEGfxTextureLoad("Assets/border.png");
 
 
 	bool isPaused = false;
@@ -79,6 +81,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 		// Your own rendering logic goes here
 		renderGame(pMesh);
+		if (isPaused) {
+			renderPause(pFont, pTex, pMesh);
+		}
 
 
 		// Informing the system about the loop's end
@@ -91,6 +96,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 
 	AEGfxMeshFree(pMesh);
+	AEGfxDestroyFont(pFont);
+	AEGfxTextureUnload(pTex);
 	// free the system
 	AESysExit();
 }
