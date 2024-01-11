@@ -3,6 +3,7 @@
 #include "utils.h"
 #include <iostream>
 #include "mesh.h"
+#include "game.h"
 
 
 void renderGame(AEGfxVertexList* pMesh) {
@@ -10,7 +11,6 @@ void renderGame(AEGfxVertexList* pMesh) {
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 
 	AEGfxSetColorToMultiply(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetColorToAdd(0.7f, 0.7f, 0.7f, 0.0f);
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 
@@ -19,12 +19,20 @@ void renderGame(AEGfxVertexList* pMesh) {
 
 	//std::cout << stow(0, 0).x << " | " << stow(0, 0).y << "\n";
 
-	for (int i{ 0 }; i < NUM_ROWS; i++) {
+	for (int i{ 1 }; i < NUM_ROWS+1; i++) {
 		sX = HORIZONTAL_SEP + GRID_WIDTH / 2;
-		for (int j{ 0 }; j < NUM_COLS; j++) {
+		for (int j{ 1 }; j < NUM_COLS+1; j++) {
 			Pos trans = stow(sX, sY);
 			AEMtx33 transform = getTransform(GRID_WIDTH, GRID_HEIGHT, trans.x, trans.y);
 			AEGfxSetTransform(transform.m);
+
+			if (dbuf[i][j] == GOL_ALIVE) {
+				AEGfxSetColorToAdd(1.f, 0.f, 0.f, 0.0f);
+			}
+			else {
+				AEGfxSetColorToAdd(0.7f, 0.7f, 0.7f, 0.0f);
+			}
+
 			AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
 
 			// update screen pos for grid rendering
