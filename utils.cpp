@@ -12,6 +12,6 @@ Pos wtos(float x, float y) {
 /* screen coordinates to world coordinates */
 Pos stow(float x, float y) {
 	float wX = x - (WINDOW_SIZE.width / 2);
-	float wY = y - (WINDOW_SIZE.height / 2);
+	float wY = y + (WINDOW_SIZE.height / 2);
 	return Pos{ wX, wY };
 }

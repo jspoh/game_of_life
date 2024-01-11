@@ -9,14 +9,14 @@ AEGfxVertexList* initMesh(void) {
 
 	// square
 	AEGfxTriAdd(
-		-0.5, 0.5, 0xFF00FF00, 0, 0,  // top left
-		-0.5, -0.5, 0xFFFF0000, 0, 0,  // bottom left
-		0.5, -0.5, 0xFFFF0000, 0, 0  // bottom right
+		-0.5, 0.5, GRID_COLOR, 0, 0,  // top left
+		-0.5, -0.5, GRID_COLOR, 0, 0,  // bottom left
+		0.5, -0.5, GRID_COLOR, 0, 0  // bottom right
 	);
 	AEGfxTriAdd(
-		-0.5, 0.5, 0xFF00FF00, 0, 0,  // top left
-		0.5, 0.5, 0xFF00FF00, 0, 0,  // top right
-		0.5, -0.5, 0xFFFF0000, 0, 0  // bottom right
+		-0.5, 0.5, GRID_COLOR, 0, 0,  // top left
+		0.5, 0.5, GRID_COLOR, 0, 0,  // top right
+		0.5, -0.5, GRID_COLOR, 0, 0  // bottom right
 	);
 
 	pMesh = AEGfxMeshEnd();

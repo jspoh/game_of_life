@@ -3,6 +3,7 @@
 
 #include <crtdbg.h> // To check for memory leaks
 #include "AEEngine.h"
+#include <iostream>
 
 #include "mesh.h"
 #include "config.h"
@@ -51,7 +52,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 		// Your own rendering logic goes here
-		AEGfxSetBackgroundColor(0xff, 0xff, 0xff);
+		AEGfxSetBackgroundColor(0x0, 0x0, 0x0);
 		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 
 		//AEGfxSetColorToMultiply(1.0f, 1.0f, 1.0f, 1.0f);
@@ -59,21 +60,25 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 		AEGfxSetTransparency(1.0f);
 
-		f32 sX = 0;// -(GRID_WIDTH / 2);
-		f32 sY = 0 + (GRID_HEIGHT / 2);
-		for (int i{ 0 }; i < NUM_COLS; i++) {
-			sX = 0;
-			for (int j{ 0 }; j < NUM_ROWS; j++) {
+		f32 sX = 0;  // will be overridden later
+		f32 sY = - VERTICAL_SEP - GRID_HEIGHT / 2 ;
+
+		//std::cout << stow(0, 0).x << " | " << stow(0, 0).y << "\n";
+
+		for (int i{ 0 }; i < NUM_ROWS; i++) {
+			sX = HORIZONTAL_SEP + GRID_WIDTH / 2;
+			for (int j{ 0 }; j < NUM_COLS; j++) {
 				Pos trans = stow(sX, sY);
 				AEMtx33 transform = getTransform(GRID_WIDTH, GRID_HEIGHT, trans.x, trans.y);
 				AEGfxSetTransform(transform.m);
 				AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
 
 				// update screen pos for grid rendering
-				sX += GRID_WIDTH;
+				sX += GRID_WIDTH + SEP_DIST;
 			}
-			sY += GRID_HEIGHT;
+			sY -= GRID_HEIGHT + SEP_DIST;
 		}
+		//std::cout << NUM_COLS << " " << NUM_ROWS << "\n";
 
 
 		// Informing the system about the loop's end
