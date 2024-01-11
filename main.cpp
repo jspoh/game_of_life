@@ -44,6 +44,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 	bool isPaused = false;
+	int frames{ 0 };
 	// Game Loop
 	while (gGameRunning)
 	{
@@ -52,15 +53,29 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 		// Your own update logic goes here
-		if (AEInputCheckTriggered(AEVK_LBUTTON)) {
-			s32 mouseX, mouseY;
-			AEInputGetCursorPosition(&mouseX, &mouseY);
-			Grid cell = getSelectedGrid(mouseX, mouseY);
-			std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << " | row: " << cell.row << " col: " << cell.col << "\n";
-
-			rbuf[cell.row][cell.col] = GOL_ALIVE;
+		if (AEInputCheckTriggered(AEVK_SPACE)) {
+			isPaused = !isPaused;
+			std::cout << "Game paused: " << isPaused << "\n";
 		}
-		runSim();
+
+		if (!isPaused) {
+			frames++;
+			if (frames == SIM_SPEED) {
+				frames = 0;
+				runSim();
+			}
+		}
+		else {
+			if (AEInputCheckTriggered(AEVK_LBUTTON)) {
+				s32 mouseX, mouseY;
+				AEInputGetCursorPosition(&mouseX, &mouseY);
+				Grid cell = getSelectedGrid(mouseX, mouseY);
+				std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << " | row: " << cell.row << " col: " << cell.col << "\n";
+
+				rbuf[cell.row][cell.col] = GOL_ALIVE;
+				dbuf[cell.row][cell.col] = GOL_ALIVE;
+			}
+		}
 
 		// Your own rendering logic goes here
 		renderGame(pMesh);
@@ -70,8 +85,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		AESysFrameEnd();
 
 		// check if forcing the application to quit
-		if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
+		if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist()) {
 			gGameRunning = 0;
+		}
 	}
 
 	AEGfxMeshFree(pMesh);
