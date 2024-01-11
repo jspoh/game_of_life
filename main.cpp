@@ -5,6 +5,7 @@
 #include "AEEngine.h"
 
 #include "mesh.h"
+#include "config.h"
 
 
 // ---------------------------------------------------------------------------
@@ -36,7 +37,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 	AEGfxVertexList* pMesh = initMesh();
-	AEMtx33 transform = getTransform();
+	AEMtx33 transform = getTransform(GRID_WIDTH, GRID_HEIGHT);
 
 
 	// Game Loop
