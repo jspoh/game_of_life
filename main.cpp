@@ -50,7 +50,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 		// Your own update logic goes here
-
+		if (AEInputCheckTriggered(AEVK_LBUTTON)) {
+			s32 mouseX, mouseY;
+			AEInputGetCursorPosition(&mouseX, &mouseY);
+			std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << "\n";
+		}
 
 		// Your own rendering logic goes here
 		renderGame(pMesh);
