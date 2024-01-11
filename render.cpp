@@ -9,8 +9,8 @@ void renderGame(AEGfxVertexList* pMesh) {
 	AEGfxSetBackgroundColor(0x0, 0x0, 0x0);
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 
-	//AEGfxSetColorToMultiply(1.0f, 1.0f, 1.0f, 1.0f);
-	//AEGfxSetColorToAdd(0.0f, 0.0f, 0.0f, 0.0f);
+	AEGfxSetColorToMultiply(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxSetColorToAdd(0.7f, 0.7f, 0.7f, 0.0f);
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 

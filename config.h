@@ -8,8 +8,7 @@
 #define GOL_DEAD 0
 
 
-#define GRID_COLOR 0xFFAAAAAA
-#define BG_COLOR 0xFF000000
+#define GRID_COLOR 0xFF000000
 
 #define SEP_DIST 5
 
