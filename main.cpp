@@ -42,6 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	AEGfxVertexList* pMesh = initMesh();
 
 
+	bool isPaused = false;
 	// Game Loop
 	while (gGameRunning)
 	{
@@ -68,7 +69,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			gGameRunning = 0;
 	}
 
-
+	AEGfxMeshFree(pMesh);
 	// free the system
 	AESysExit();
 }
