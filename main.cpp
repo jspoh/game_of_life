@@ -4,6 +4,7 @@
 #include <crtdbg.h> // To check for memory leaks
 #include "AEEngine.h"
 
+#include "mesh.h"
 
 
 // ---------------------------------------------------------------------------
@@ -28,11 +29,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	AESysInit(hInstance, nCmdShow, 1600, 900, 1, 60, true, NULL);
 
 	// Changing the window title
-	AESysSetWindowTitle("My New Demo!");
+	AESysSetWindowTitle("Game of life");
 
 	// reset the system modules
 	AESysReset();
 
+
+	AEGfxVertexList* pMesh = initMesh();
+	AEMtx33 transform = getTransform();
 
 
 	// Game Loop
@@ -46,6 +50,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 		// Your own rendering logic goes here
+		AEGfxSetBackgroundColor(0xff, 0xff, 0xff);
+		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+
+		//AEGfxSetColorToMultiply(1.0f, 1.0f, 1.0f, 1.0f);
+		//AEGfxSetColorToAdd(0.0f, 0.0f, 0.0f, 0.0f);
+		AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+		AEGfxSetTransparency(1.0f);
+
+		AEGfxSetTransform(transform.m);
+		AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
 
 
 		// Informing the system about the loop's end
