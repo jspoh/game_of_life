@@ -22,6 +22,9 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{bde4165f-8e9a-4f16-9a27-0370eb593347}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\render">
+      <UniqueIdentifier>{7bbb54cd-8933-4744-b40d-6b9f32edc503}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,6 +39,9 @@
     <ClCompile Include="utils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="render.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mesh.h">
@@ -46,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="utils.h">
       <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="render.h">
+      <Filter>Source Files\render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
