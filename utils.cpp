@@ -17,8 +17,8 @@ Pos stow(float x, float y) {
 }
 
 
-Grid getSelectedGrid(f32 mouseX, f32 mouseY) {
-	int row = trunc((mouseY - VERTICAL_SEP + SEP_DIST) / (GRID_HEIGHT + SEP_DIST)) + 1;
-	int col = trunc((mouseX - HORIZONTAL_SEP + SEP_DIST) / (GRID_WIDTH + SEP_DIST)) + 1;
+Grid getSelectedGrid(s32 mouseX, s32 mouseY) {
+	int row = static_cast<int>(trunc((mouseY - VERTICAL_SEP + SEP_DIST) / (GRID_HEIGHT + SEP_DIST)) + 1);
+	int col = static_cast<int>(trunc((mouseX - HORIZONTAL_SEP + SEP_DIST) / (GRID_WIDTH + SEP_DIST)) + 1);
 	return Grid{ row, col };
 }

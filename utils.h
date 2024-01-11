@@ -11,4 +11,4 @@ Pos wtos(float x, float y);
 Pos stow(float x, float y);
 
 /* get grid clicked */
-Grid getSelectedGrid(f32 mouseX, f32 mouseY);
+Grid getSelectedGrid(s32 mouseX, s32 mouseY);

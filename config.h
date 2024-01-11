@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define SIM_SPEED 10  // number of frames before an update. bigger number means slower
+#define SIM_SPEED 5  // number of frames before an update. bigger number means slower
 
 
 #define GOL_GRID_COLS 30
