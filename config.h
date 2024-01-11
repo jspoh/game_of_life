@@ -7,6 +7,7 @@
 #define GOL_ALIVE 1
 #define GOL_DEAD 0
 
+#define MAX 100
 
 #define GRID_COLOR 0xFF000000
 

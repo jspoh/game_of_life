@@ -9,6 +9,7 @@
 #include "config.h"
 #include "utils.h"
 #include "render.h"
+#include "game.h"
 
 
 // ---------------------------------------------------------------------------
@@ -56,6 +57,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			AEInputGetCursorPosition(&mouseX, &mouseY);
 			std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << "\n";
 		}
+		runSim();
 
 		// Your own rendering logic goes here
 		renderGame(pMesh);
