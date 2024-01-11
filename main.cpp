@@ -55,7 +55,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		if (AEInputCheckTriggered(AEVK_LBUTTON)) {
 			s32 mouseX, mouseY;
 			AEInputGetCursorPosition(&mouseX, &mouseY);
-			std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << "\n";
+			Grid cell = getSelectedGrid(mouseX, mouseY);
+			std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << " | row: " << cell.row << " col: " << cell.col << "\n";
 		}
 		runSim();
 

@@ -23,6 +23,11 @@ typedef struct _pos {
 	float y;
 } Pos;
 
+typedef struct _grid {
+	int row;
+	int col;
+} Grid;
+
 extern Size WINDOW_SIZE;
 
 #define GRID_HEIGHT (((WINDOW_SIZE.height - SEP_DIST) / GOL_GRID_COLS) - SEP_DIST)

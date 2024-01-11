@@ -26,6 +26,7 @@ void renderGame(AEGfxVertexList* pMesh) {
 			AEMtx33 transform = getTransform(GRID_WIDTH, GRID_HEIGHT, trans.x, trans.y);
 			AEGfxSetTransform(transform.m);
 
+			// set color of cell conditionally
 			if (dbuf[i][j] == GOL_ALIVE) {
 				AEGfxSetColorToAdd(1.f, 0.f, 0.f, 0.0f);
 			}

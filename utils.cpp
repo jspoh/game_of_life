@@ -15,3 +15,10 @@ Pos stow(float x, float y) {
 	float wY = y + (WINDOW_SIZE.height / 2);
 	return Pos{ wX, wY };
 }
+
+
+Grid getSelectedGrid(f32 mouseX, f32 mouseY) {
+	int row = trunc((mouseY - VERTICAL_SEP + SEP_DIST) / (GRID_HEIGHT + SEP_DIST)) + 1;
+	int col = trunc((mouseX - HORIZONTAL_SEP + SEP_DIST) / (GRID_WIDTH + SEP_DIST)) + 1;
+	return Grid{ row, col };
+}
