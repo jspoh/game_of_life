@@ -57,6 +57,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			AEInputGetCursorPosition(&mouseX, &mouseY);
 			Grid cell = getSelectedGrid(mouseX, mouseY);
 			std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << " | row: " << cell.row << " col: " << cell.col << "\n";
+
+			rbuf[cell.row][cell.col] = GOL_ALIVE;
 		}
 		runSim();
 
