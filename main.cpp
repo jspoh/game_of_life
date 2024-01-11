@@ -6,6 +6,7 @@
 
 #include "mesh.h"
 #include "config.h"
+#include "utils.h"
 
 
 // ---------------------------------------------------------------------------
@@ -37,7 +38,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 	AEGfxVertexList* pMesh = initMesh();
-	AEMtx33 transform = getTransform(GRID_WIDTH, GRID_HEIGHT);
 
 
 	// Game Loop
@@ -59,8 +59,21 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 		AEGfxSetTransparency(1.0f);
 
-		AEGfxSetTransform(transform.m);
-		AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
+		f32 sX = 0;// -(GRID_WIDTH / 2);
+		f32 sY = 0 + (GRID_HEIGHT / 2);
+		for (int i{ 0 }; i < NUM_COLS; i++) {
+			sX = 0;
+			for (int j{ 0 }; j < NUM_ROWS; j++) {
+				Pos trans = stow(sX, sY);
+				AEMtx33 transform = getTransform(GRID_WIDTH, GRID_HEIGHT, trans.x, trans.y);
+				AEGfxSetTransform(transform.m);
+				AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
+
+				// update screen pos for grid rendering
+				sX += GRID_WIDTH;
+			}
+			sY += GRID_HEIGHT;
+		}
 
 
 		// Informing the system about the loop's end

@@ -25,7 +25,7 @@ AEGfxVertexList* initMesh(void) {
 }
 
 
-AEMtx33 getTransform(float width, float height) {
+AEMtx33 getTransform(f32 width, f32 height, f32 transX, f32 transY) {
 	// Create a scale matrix that scales by 500 x and y
 	AEMtx33 scale = { 0 };
 	AEMtx33Scale(&scale, width, height);
@@ -34,7 +34,7 @@ AEMtx33 getTransform(float width, float height) {
 	AEMtx33Rot(&rotate, 0);
 
 	AEMtx33 translate = { 0 };
-	AEMtx33Trans(&translate, 0, 0);
+	AEMtx33Trans(&translate, transX, transY);
 
 	// Concatenate the matrices into the 'transform' variable.
 	// We concatenate in the order of translation * rotation * scale
