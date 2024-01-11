@@ -25,6 +25,10 @@ int _getNeighbourCount(int row, int col) {
 		}
 	}
 
+	if (rbuf[row][col] == GOL_ALIVE) {
+		counter--;
+	}
+
 	return counter;
 }
 
