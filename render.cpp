@@ -45,12 +45,6 @@ void renderGame(AEGfxVertexList* pMesh) {
 }
 
 void renderPause(s8 pFont, AEGfxTexture* pTex, AEGfxVertexList* pMesh) {
-	const char* pText = "PAUSED";
-	f32 width, height;
-	AEGfxGetPrintSize(pFont, pText, 1.f, &width, &height);
-	AEGfxPrint(pFont, pText, -width / 2, -height / 2, 1, 1, 1, 1, 1);
-
-
 	AEMtx33 scale = { 0 };
 	AEMtx33Scale(&scale, 1600, 900);
 	AEMtx33 rotate = { 0 };
@@ -88,4 +82,10 @@ void renderPause(s8 pFont, AEGfxTexture* pTex, AEGfxVertexList* pMesh) {
 
 	// Tell Alpha Engine to draw the mesh with the above settings.
 	AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
+
+	/* text */
+	const char* pText = "PAUSED";
+	f32 width, height;
+	AEGfxGetPrintSize(pFont, pText, 1.f, &width, &height);
+	AEGfxPrint(pFont, pText, -width / 2, -height / 2, 1, 1, 1, 1, 1);
 }
