@@ -46,12 +46,12 @@ void renderGame(AEGfxVertexList* pMesh) {
 
 void renderPause(s8 pFont, AEGfxTexture* pTex, AEGfxVertexList* pMesh) {
 	AEMtx33 scale = { 0 };
-	AEMtx33Scale(&scale, 1600, 900);
+	AEMtx33Scale(&scale, WINDOW_SIZE.width, 50);
 	AEMtx33 rotate = { 0 };
 	AEMtx33Rot(&rotate, PI*2);
 
 	AEMtx33 translate = { 0 };
-	AEMtx33Trans(&translate, 0, 0);
+	AEMtx33Trans(&translate, 0, WINDOW_SIZE.height / 2);
 
 	AEMtx33 transform = { 0 };
 	AEMtx33Concat(&transform, &rotate, &scale);
@@ -60,27 +60,46 @@ void renderPause(s8 pFont, AEGfxTexture* pTex, AEGfxVertexList* pMesh) {
 
 
 	// Tell the Alpha Engine to get ready to draw something with texture.
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 
 	// Set the the color to multiply to white, so that the sprite can
 	// display the full range of colors (default is black).
 	AEGfxSetColorToMultiply(1.0f, 1.0f, 1.0f, 1.0f);
 
 	// Set the color to add to nothing, so that we don't alter the sprite's color
-	AEGfxSetColorToAdd(0.0f, 0.0f, 0.0f, 0.0f);
+	AEGfxSetColorToAdd(1.0f, 0.5f, 0.5f, 0.0f);
 
 	// Set blend mode to AE_GFX_BM_BLEND, which will allow transparency.
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-	AEGfxSetTransparency(0.5f);
-
-	// Tell Alpha Engine to use the texture stored in pTex
-	AEGfxTextureSet(pTex, 0, 0);
+	AEGfxSetTransparency(1.f);
 
 	// Tell Alpha Engine to use the matrix in 'transform' to apply onto all
 	// the vertices of the mesh that we are about to choose to draw in the next line.
 	AEGfxSetTransform(transform.m);
 
-	// Tell Alpha Engine to draw the mesh with the above settings.
+	// top border
+	AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
+
+	// bottom border
+	AEMtx33Trans(&translate, 0, -(WINDOW_SIZE.height / 2));
+	AEMtx33Concat(&transform, &rotate, &scale);
+	AEMtx33Concat(&transform, &translate, &transform);
+	AEGfxSetTransform(transform.m);
+	AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
+
+	// left border
+	AEMtx33Scale(&scale, 50, WINDOW_SIZE.height);
+	AEMtx33Trans(&translate, -(WINDOW_SIZE.width / 2), 0);
+	AEMtx33Concat(&transform, &rotate, &scale);
+	AEMtx33Concat(&transform, &translate, &transform);
+	AEGfxSetTransform(transform.m);
+	AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
+
+	// right border
+	AEMtx33Trans(&translate, (WINDOW_SIZE.width / 2), 0);
+	AEMtx33Concat(&transform, &rotate, &scale);
+	AEMtx33Concat(&transform, &translate, &transform);
+	AEGfxSetTransform(transform.m);
 	AEGfxMeshDraw(pMesh, AE_GFX_MDM_TRIANGLES);
 
 	/* text */
