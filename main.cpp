@@ -57,7 +57,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		// Your own update logic goes here
 		if (AEInputCheckTriggered(AEVK_SPACE)) {
 			isPaused = !isPaused;
-			std::cout << "Game paused: " << isPaused << "\n";
+			//std::cout << "Game paused: " << isPaused << "\n";
 		}
 
 		if (!isPaused) {
@@ -72,7 +72,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 				s32 mouseX, mouseY;
 				AEInputGetCursorPosition(&mouseX, &mouseY);
 				Grid cell = getSelectedGrid(mouseX, mouseY);
-				std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << " | row: " << cell.row << " col: " << cell.col << "\n";
+				//std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << " | row: " << cell.row << " col: " << cell.col << "\n";
 
 				rbuf[cell.row][cell.col] = GOL_ALIVE;
 				dbuf[cell.row][cell.col] = GOL_ALIVE;
