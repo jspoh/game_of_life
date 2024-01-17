@@ -45,7 +45,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	AEGfxTexture* pTex = AEGfxTextureLoad("Assets/border.png");
 
 
-	bool isPaused = false;
+	bool isPaused = true;
 	int frames{ 0 };
 	// Game Loop
 	while (gGameRunning)
