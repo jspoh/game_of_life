@@ -29,7 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	int gGameRunning = 1;
 	
 	// Using custom window procedure
-	AESysInit(hInstance, nCmdShow, 1600, 900, 1, 60, true, NULL);
+	AESysInit(hInstance, nCmdShow, 1600, 900, false, 60, true, NULL);
 
 	// Initialization of your own variables go here
 	s8 pFont = AEGfxCreateFont("Assets/liberation-mono.ttf", 72);
