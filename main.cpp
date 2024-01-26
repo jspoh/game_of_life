@@ -74,8 +74,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 				Grid cell = getSelectedGrid(mouseX, mouseY);
 				//std::cout << "Mouse clicked at position " << mouseX << ", " << mouseY << " | row: " << cell.row << " col: " << cell.col << "\n";
 
-				rbuf[cell.row][cell.col] = GOL_ALIVE;
-				dbuf[cell.row][cell.col] = GOL_ALIVE;
+				rbuf[cell.row][cell.col] = !rbuf[cell.row][cell.col];
+				dbuf[cell.row][cell.col] = !dbuf[cell.row][cell.col];
 			}
 		}
 
